@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Bean Buddy</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap">
@@ -382,31 +381,186 @@ const CASES = [
     opsi: ['Intrarenal (NTA), langsung dialisis', 'Pascarenal, nefrostomi', 'Prerenal akibat dehidrasi, rehidrasi cairan', 'Glomerulonefritis kronik, steroid'],
     benar: 2,
     jelas: 'Hipovolemia membuat perfusi ginjal turun (prerenal). Petunjuknya: riwayat kehilangan cairan, rasio BUN:kreatinin di atas 20, dan tidak ada hidronefrosis. Penanganannya rehidrasi, menghentikan obat nefrotoksik, dan memantau elektrolit. Bila terlambat, AKI prerenal dapat berlanjut menjadi nekrosis tubular akut.'
+  },
+  {
+    judul: 'Demam dan nyeri perineum',
+    pasien: 'Laki-laki 30 tahun dengan demam menggigil, nyeri di perineum dan punggung bawah, nyeri saat berkemih, sering berkemih, dan pancaran lemah sejak 2 hari. Colok dubur: prostat membesar, teraba hangat, sangat nyeri tekan.',
+    tanya: 'Tindakan mana yang sebaiknya dihindari pada kasus ini?',
+    opsi: ['Urinalisis dan kultur urin', 'Pemeriksaan colok dubur yang lembut', 'Pijat prostat untuk mengeluarkan sekret', 'Pemberian antibiotik sesuai kultur'],
+    benar: 2,
+    jelas: 'Gambaran prostatitis bakterial akut. Pijat prostat dihindari karena nyeri dan dapat memicu bakteremia atau sepsis. Colok dubur dilakukan selembut mungkin. Antibiotik diberikan sesuai kultur, dengan rawat inap bila toksik atau ada retensi urin.'
+  },
+  {
+    judul: 'Tidak bisa kencing',
+    pasien: 'Laki-laki 70 tahun, riwayat BPH tidak berobat, tidak bisa berkemih selama 12 jam disertai nyeri hebat di perut bawah dan sangat gelisah. Teraba massa kistik di suprapubik yang nyeri bila ditekan.',
+    tanya: 'Tindakan awal yang paling tepat?',
+    opsi: ['Antibiotik oral dan pulang', 'Pemasangan kateter uretra untuk dekompresi', 'Furosemid intravena', 'Sistoskopi segera'],
+    benar: 1,
+    jelas: 'Ini retensi urin akut. Prioritas pertama adalah mengosongkan kandung kemih dengan kateter uretra (bila gagal, sistostomi suprapubik). Setelah itu pantau diuresis karena dapat terjadi diuresis pascaobstruksi, dan cari penyebabnya.'
+  },
+  {
+    judul: 'Batu cetak dan ISK berulang',
+    pasien: 'Wanita 45 tahun dengan ISK berulang selama 2 tahun. CT menunjukkan batu besar bercabang yang mengisi pelvis dan kaliks ginjal kiri (staghorn). pH urin 8.',
+    tanya: 'Bakteri yang paling mungkin berhubungan dengan batu ini?',
+    opsi: ['Escherichia coli', 'Proteus mirabilis', 'Enterococcus faecalis', 'Candida albicans'],
+    benar: 1,
+    jelas: 'Bakteri penghasil urease, seperti Proteus mirabilis, memecah urea menjadi amonia sehingga urin menjadi basa dan terbentuk batu struvit (magnesium amonium fosfat). Batu staghorn biasanya perlu dikeluarkan lewat PCNL, karena sisa batu menjadi sumber infeksi berulang.'
+  },
+  {
+    judul: 'Batu yang tidak tampak di BNO',
+    pasien: 'Laki-laki 50 tahun dengan riwayat gout mengalami kolik ureter berulang. Foto BNO tidak menunjukkan batu, namun CT menunjukkan batu di ureter proksimal. pH urin 5,0.',
+    tanya: 'Strategi pencegahan yang paling sesuai?',
+    opsi: ['Asidifikasi urin', 'Alkalinisasi urin dengan kalium sitrat dan minum banyak', 'Diet tinggi purin', 'Vitamin C dosis tinggi'],
+    benar: 1,
+    jelas: 'Batu asam urat bersifat radiolusen sehingga tidak tampak di foto polos, dan terbentuk pada urin yang asam. Pencegahannya menaikkan pH urin ke sekitar 6-6,5 dengan kalium sitrat, minum cukup, serta mengurangi purin. Alopurinol dipertimbangkan bila ada hiperurisemia.'
+  },
+  {
+    judul: 'Kencing berdarah tanpa nyeri',
+    pasien: 'Laki-laki 62 tahun, perokok 40 tahun, mengalami kencing berwarna merah segar tanpa rasa nyeri selama 3 hari. Tidak demam dan tidak ada riwayat batu.',
+    tanya: 'Pemeriksaan kunci yang perlu dilakukan?',
+    opsi: ['Antibiotik empiris dan observasi', 'Sistoskopi disertai evaluasi saluran kemih atas', 'USG saja lalu pulang', 'Foto BNO ulang'],
+    benar: 1,
+    jelas: 'Hematuria makroskopik tanpa nyeri pada perokok usia lanjut dianggap keganasan saluran kemih sampai terbukti sebaliknya, terutama karsinoma urotelial kandung kemih. Evaluasinya sistoskopi dan pencitraan saluran atas (misalnya CT urografi), dengan sitologi urin bila perlu.'
+  },
+  {
+    judul: 'Benjolan di pinggang',
+    pasien: 'Laki-laki 58 tahun dengan kencing berdarah, nyeri tumpul pinggang kanan, dan berat badan turun 5 kg dalam 3 bulan. Teraba massa padat di pinggang kanan.',
+    tanya: 'Diagnosis yang paling mungkin dan pencitraan lanjutannya?',
+    opsi: ['Pielonefritis akut, kultur urin', 'Karsinoma sel ginjal, CT scan dengan kontras', 'Batu ureter, BNO ulang', 'Hidronefrosis jinak, observasi'],
+    benar: 1,
+    jelas: 'Hematuria, nyeri pinggang, dan massa pinggang adalah trias klasik karsinoma sel ginjal, meski hanya sebagian kecil pasien yang menunjukkan ketiganya. CT dengan kontras menilai massa dan stadium. Terapi utama untuk tumor lokal adalah nefrektomi (parsial atau radikal).'
+  },
+  {
+    judul: 'Bayi dengan muara uretra tidak di ujung',
+    pasien: 'Bayi laki-laki baru lahir. Muara uretra terletak di sisi bawah batang penis, kulup menumpuk di bagian atas (dorsal hood), dan penis tampak melengkung ke bawah.',
+    tanya: 'Tindakan yang harus dihindari sebelum operasi koreksi?',
+    opsi: ['Sirkumsisi', 'Pemeriksaan fisik lengkap', 'Edukasi orang tua', 'Pemeriksaan kelainan penyerta'],
+    benar: 0,
+    jelas: 'Gambaran hipospadia dengan chordee. Sirkumsisi dilarang sebelum koreksi karena kulup dipakai sebagai jaringan untuk rekonstruksi uretra. Koreksi bedah biasanya dilakukan pada usia sekitar 6-18 bulan.'
+  },
+  {
+    judul: 'Demam pada balita',
+    pasien: 'Anak laki-laki 18 bulan dengan demam 39 derajat Celsius selama 2 hari tanpa batuk atau pilek. Urinalisis dari kateter: leukosit dan nitrit positif, kultur menumbuhkan E. coli. Ini episode ISK pertamanya.',
+    tanya: 'Pemeriksaan pencitraan lanjutan yang tepat?',
+    opsi: ['Biopsi ginjal', 'USG ginjal dan saluran kemih', 'Sistoskopi', 'CT scan abdomen'],
+    benar: 1,
+    jelas: 'Pada ISK febril pertama balita, USG ginjal dan saluran kemih dilakukan untuk mencari kelainan anatomi atau hidronefrosis. Voiding cystourethrogram (VCUG) untuk menilai refluks vesikoureter dilakukan bila USG abnormal atau ISK febril berulang.'
+  },
+  {
+    judul: 'Kulup tidak bisa dikembalikan',
+    pasien: 'Laki-laki 20 tahun menarik kulupnya ke belakang saat membersihkan, lalu tidak bisa dikembalikan. Sejak 4 jam glans bengkak, nyeri, dan tampak kebiruan, dengan cincin bengkak di belakang glans.',
+    tanya: 'Tindakan paling tepat?',
+    opsi: ['Kompres hangat dan observasi di rumah', 'Reduksi manual segera', 'Antibiotik oral dan kontrol minggu depan', 'Sirkumsisi elektif bulan depan tanpa tindakan sekarang'],
+    benar: 1,
+    jelas: 'Ini parafimosis, suatu emergensi urologi karena dapat mengganggu aliran darah ke glans. Lakukan reduksi manual segera, dengan kompresi glans untuk mengurangi edema dan analgesia atau anestesi lokal. Bila gagal, dilakukan dorsal slit. Sirkumsisi dipertimbangkan setelahnya.'
+  },
+  {
+    judul: 'Urin merah setelah pilek',
+    pasien: 'Laki-laki 22 tahun dengan urin berwarna cola yang muncul 2 hari setelah batuk pilek. Tidak ada edema atau hipertensi. Urinalisis: eritrosit dismorfik, proteinuria ringan. C3 normal. Ia pernah mengalami episode serupa tahun lalu.',
+    tanya: 'Diagnosis yang paling mungkin?',
+    opsi: ['Glomerulonefritis akut pascastreptokokus', 'Nefropati IgA', 'Lupus nefritis', 'Sindrom nefrotik kelainan minimal'],
+    benar: 1,
+    jelas: 'Hematuria makroskopik 1-3 hari setelah infeksi saluran napas, berulang, dengan C3 normal, khas nefropati IgA. Pada GNAPS ada masa laten 1-3 minggu dan C3 turun. Konfirmasi dengan biopsi ginjal yang menunjukkan deposit IgA di mesangium.'
+  },
+  {
+    judul: 'Lemas pada pasien cuci darah',
+    pasien: 'Laki-laki 60 tahun dengan PGK G5 yang melewatkan jadwal hemodialisis 2 kali. Ia lemas dan berdebar. EKG: gelombang T tinggi dan runcing. Kalium serum 7,2 mEq/L.',
+    tanya: 'Terapi pertama yang paling penting?',
+    opsi: ['Diet rendah kalium saja', 'Furosemid oral', 'Kalsium glukonas intravena', 'Menunggu jadwal hemodialisis berikutnya'],
+    benar: 2,
+    jelas: 'Hiperkalemia dengan perubahan EKG adalah emergensi. Kalsium glukonas intravena diberikan pertama untuk menstabilkan membran miokard. Selanjutnya insulin dengan glukosa dan beta-agonis inhalasi untuk memindahkan kalium ke dalam sel, lalu hemodialisis untuk mengeluarkannya.'
+  },
+  {
+    judul: 'Pucat dan lemas pada PGK',
+    pasien: 'Wanita 55 tahun dengan PGK stadium G4. Hb 8,5 g/dL, MCV normal, cadangan besi cukup, tidak ada perdarahan. Ia mudah lelah.',
+    tanya: 'Terapi yang paling sesuai untuk anemianya?',
+    opsi: ['Transfusi darah rutin tiap minggu', 'Eritropoietin (ESA) dengan pemantauan besi', 'Asam folat saja', 'Splenektomi'],
+    benar: 1,
+    jelas: 'Anemia pada PGK terutama akibat berkurangnya eritropoietin yang dibuat ginjal. Terapinya agen perangsang eritropoiesis (ESA) setelah memastikan cadangan besi cukup. Transfusi dihindari bila memungkinkan, terutama pada calon penerima transplantasi.'
+  },
+  {
+    judul: 'AKI yang tidak membaik',
+    pasien: 'Laki-laki 50 tahun dengan AKI oligurik. Napas sesak, edema paru, kalium 7,5 mEq/L yang tidak turun dengan terapi medis, dan asidosis berat (pH 7,05). Output urin minimal.',
+    tanya: 'Tindakan berikutnya?',
+    opsi: ['Menaikkan dosis diuretik terus-menerus', 'Observasi 24 jam lagi', 'Terapi pengganti ginjal (dialisis) segera', 'Transfusi albumin'],
+    benar: 2,
+    jelas: 'Hiperkalemia berat, asidosis, dan kelebihan cairan yang refrakter terhadap terapi medis adalah indikasi dialisis. Indikasi lainnya: uremia (misalnya perikarditis atau ensefalopati) dan intoksikasi zat yang dapat didialisis.'
+  },
+  {
+    judul: 'Benjolan di buah zakar',
+    pasien: 'Laki-laki 25 tahun menemukan benjolan keras tidak nyeri di testis kanan sejak 1 bulan. Tidak demam. Pada USG tampak massa hipoekoik intratestikuler. AFP dan beta-hCG meningkat.',
+    tanya: 'Tindakan yang paling tepat?',
+    opsi: ['Biopsi jarum lewat kulit skrotum', 'Orkiektomi radikal melalui sayatan inguinal', 'Antibiotik 2 minggu lalu evaluasi', 'Observasi 6 bulan'],
+    benar: 1,
+    jelas: 'Massa intratestikuler padat dengan penanda tumor meningkat sangat mencurigakan untuk tumor sel germinal. Baku tatalaksana adalah orkiektomi radikal lewat sayatan inguinal. Biopsi atau pendekatan skrotal dihindari karena dapat mengubah jalur penyebaran limfatik.'
+  },
+  {
+    judul: 'Nyeri skrotum bertahap',
+    pasien: 'Laki-laki 22 tahun yang aktif secara seksual dengan nyeri skrotum kanan yang makin berat selama 2 hari, disuria, dan keluar cairan dari uretra. Nyeri berkurang saat testis diangkat (Prehn positif). Refleks kremaster positif.',
+    tanya: 'Patogen yang paling sering menyebabkannya pada usia ini?',
+    opsi: ['E. coli', 'Chlamydia trachomatis dan Neisseria gonorrhoeae', 'Mycobacterium tuberculosis', 'Staphylococcus aureus'],
+    benar: 1,
+    jelas: 'Ini epididimitis akut. Pada pria aktif seksual usia di bawah 35 tahun, penyebab tersering adalah infeksi menular seksual (Chlamydia dan gonore). Pada pria lebih tua atau dengan obstruksi, E. coli lebih sering. Pembeda dengan torsio: onset bertahap, Prehn positif, dan refleks kremaster ada.'
+  },
+  {
+    judul: 'PSA tinggi',
+    pasien: 'Laki-laki 55 tahun datang untuk pemeriksaan kesehatan. Tidak ada keluhan berkemih. PSA 8,2 ng/mL. Colok dubur: teraba nodul keras dan tidak rata di lobus kanan prostat.',
+    tanya: 'Langkah berikutnya?',
+    opsi: ['Antibiotik 4 minggu lalu observasi 1 tahun', 'Biopsi prostat', 'TURP', 'Menunggu dan mengulang PSA 1 tahun lagi'],
+    benar: 1,
+    jelas: 'Nodul keras pada colok dubur disertai PSA meningkat mencurigakan untuk kanker prostat. Diagnosis pasti ditegakkan dengan biopsi, sering didahului MRI prostat. Hasil biopsi dinilai dengan skor Gleason atau ISUP grade group untuk menentukan terapi.'
   }
 ];
-let ci = 0, score = 0, answered = false;
+function shuffle(a) {
+  const r = a.slice();
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = r[i]; r[i] = r[j]; r[j] = t;
+  }
+  return r;
+}
+let deck = [], ci = 0, score = 0, answered = false;
+function startDeck(n) {
+  deck = shuffle(CASES).slice(0, n).map(function (c) {
+    return {
+      judul: c.judul, pasien: c.pasien, tanya: c.tanya, jelas: c.jelas,
+      opts: shuffle(c.opsi.map(function (t, i) { return { t: t, ok: i === c.benar }; }))
+    };
+  });
+  ci = 0; score = 0; answered = false;
+  renderCase();
+}
 function renderCase() {
   const box = $('#caseBox');
-  if (ci >= CASES.length) {
-    const pct = score / CASES.length;
+  if (!deck.length) {
+    box.innerHTML = '<div style="display:flex;justify-content:center">' + bean('happy', 110) + '</div>' +
+      '<h2 style="text-align:center">Kuis kasus klinis</h2>' +
+      '<p class="sub" style="text-align:center">Ada ' + CASES.length + ' kasus di bank soal. Urutan kasus dan pilihan jawaban diacak setiap kali kamu main.</p>' +
+      '<div class="row" style="justify-content:center"><button class="btn" id="go10">Main 10 soal</button><button class="btn ghost" id="goAll">Semua ' + CASES.length + ' soal</button></div>';
+    $('#go10').onclick = function () { startDeck(10); };
+    $('#goAll').onclick = function () { startDeck(CASES.length); };
+    return;
+  }
+  if (ci >= deck.length) {
+    const pct = score / deck.length;
     const mood = pct >= 0.7 ? 'cheer' : (pct >= 0.4 ? 'happy' : 'think');
     const msg = pct >= 0.7 ? 'Keren, kamu sudah paham banyak!' : (pct >= 0.4 ? 'Lumayan! Baca ringkasan lalu coba lagi.' : 'Tidak apa-apa. Baca ringkasan penyakitnya dulu, lalu coba lagi.');
     box.innerHTML = '<div style="display:flex;justify-content:center">' + bean(mood, 120) + '</div>' +
-      '<h2 style="text-align:center">Skormu ' + score + ' dari ' + CASES.length + '</h2>' +
+      '<h2 style="text-align:center">Skormu ' + score + ' dari ' + deck.length + '</h2>' +
       '<p class="sub" style="text-align:center">' + msg + '</p>' +
-      '<div class="row" style="justify-content:center"><button class="btn" id="again">Ulangi kuis</button><a class="btn ghost" style="text-decoration:none" href="#ringkasan">Buka ringkasan</a></div>';
-    $('#again').onclick = function () { ci = 0; score = 0; answered = false; renderCase(); };
+      '<div class="row" style="justify-content:center"><button class="btn" id="again">Main lagi</button><a class="btn ghost" style="text-decoration:none" href="#ringkasan">Buka ringkasan</a></div>';
+    $('#again').onclick = function () { deck = []; renderCase(); };
     return;
   }
-  const c = CASES[ci];
+  const c = deck[ci];
   answered = false;
-  let h = '<div class="prog"><span>Kasus ' + (ci + 1) + ' dari ' + CASES.length + '</span><span>Skor: ' + score + '</span></div>' +
-    '<div class="meter" aria-hidden="true"><i style="width:' + (ci / CASES.length * 100) + '%"></i></div>' +
+  let h = '<div class="prog"><span>Kasus ' + (ci + 1) + ' dari ' + deck.length + '</span><span>Skor: ' + score + '</span></div>' +
+    '<div class="meter" aria-hidden="true"><i style="width:' + (ci / deck.length * 100) + '%"></i></div>' +
     '<h2>' + c.judul + '</h2>' +
     '<p class="vignette">' + c.pasien + '</p>' +
     '<p><strong>' + c.tanya + '</strong></p><div class="opts" id="opts">';
-  c.opsi.forEach(function (o, i) {
-    h += '<button class="opt" data-i="' + i + '">' + String.fromCharCode(65 + i) + '. ' + o + '</button>';
+  c.opts.forEach(function (o, i) {
+    h += '<button class="opt" data-i="' + i + '">' + String.fromCharCode(65 + i) + '. ' + o.t + '</button>';
   });
   h += '</div><div id="fb"></div>';
   box.innerHTML = h;
@@ -415,16 +569,16 @@ function renderCase() {
 function pick(e) {
   if (answered) return;
   answered = true;
-  const c = CASES[ci];
+  const c = deck[ci];
   const i = parseInt(e.currentTarget.getAttribute('data-i'), 10);
-  const ok = i === c.benar;
+  const ok = c.opts[i].ok;
   if (ok) score++;
   document.querySelectorAll('.opt').forEach(function (b, k) {
     b.disabled = true;
-    if (k === c.benar) b.classList.add('right');
+    if (c.opts[k].ok) b.classList.add('right');
     else if (k === i) b.classList.add('wrong');
   });
-  const last = ci === CASES.length - 1;
+  const last = ci === deck.length - 1;
   $('#fb').innerHTML = '<div class="fb">' + bean(ok ? 'cheer' : 'oops', 64) +
     '<div style="display:flex;flex-direction:column;gap:6px;min-width:0"><strong>' + (ok ? 'Benar!' : 'Belum tepat') + '</strong><p>' + c.jelas + '</p></div></div>' +
     '<button class="btn" id="next" style="margin-top:12px">' + (last ? 'Lihat skor' : 'Kasus berikutnya') + '</button>';
@@ -539,5 +693,3 @@ function renderDis(filter) {
 $('#qtext').addEventListener('input', function (e) { renderDis(e.target.value); });
 renderDis('');
 </script>
-
-</body></html>
