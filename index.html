@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bean Buddy</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap">
@@ -33,7 +38,9 @@
   --good: #5BD08A; --warn: #E3B055; --bad: #F08A7E; color-scheme: dark;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
+  margin: 0;
   background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
   padding-block: 20px 40px;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -106,6 +113,8 @@ footer { font-size: .82rem; color: var(--muted); text-align: center; }
 @media (prefers-reduced-motion: reduce) { .meter i { transition: none; } }
 @media (max-width: 420px) { .top h1 { font-size: 1.7rem; } .big { font-size: 2.2rem; } }
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="top">
@@ -693,3 +702,6 @@ function renderDis(filter) {
 $('#qtext').addEventListener('input', function (e) { renderDis(e.target.value); });
 renderDis('');
 </script>
+
+</body>
+</html>
