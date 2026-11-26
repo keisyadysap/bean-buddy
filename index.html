@@ -22,6 +22,7 @@
   --good: #1B7A44;
   --warn: #A66A0A;
   --bad: #B3321F;
+  --a1: #F7D6DB; --a2: #EBA7B2; --a3: #C6E7DF;
   --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
   --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -29,13 +30,13 @@
   :root:not([data-theme="light"]) {
     --bg: #0E1D1B; --surface: #162826; --ink: #E6F2EE; --muted: #9DB7B1; --line: #2A4440;
     --bean: #F0667B; --bean-ink: #2A0A10; --bean-soft: #3A1A21; --leaf: #4CC9B4; --leaf-soft: #1B3A36;
-    --good: #5BD08A; --warn: #E3B055; --bad: #F08A7E; color-scheme: dark;
+    --good: #5BD08A; --warn: #E3B055; --bad: #F08A7E; --a1: #4B2630; --a2: #7A3745; --a3: #24514A; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0E1D1B; --surface: #162826; --ink: #E6F2EE; --muted: #9DB7B1; --line: #2A4440;
   --bean: #F0667B; --bean-ink: #2A0A10; --bean-soft: #3A1A21; --leaf: #4CC9B4; --leaf-soft: #1B3A36;
-  --good: #5BD08A; --warn: #E3B055; --bad: #F08A7E; color-scheme: dark;
+  --good: #5BD08A; --warn: #E3B055; --bad: #F08A7E; --a1: #4B2630; --a2: #7A3745; --a3: #24514A; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -52,7 +53,7 @@ p { margin: 0; }
 .top { display: flex; align-items: center; gap: 14px; }
 .top h1 { font-size: 2rem; }
 .top p { color: var(--muted); font-size: .95rem; }
-.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px; }
+.tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px; }
 .tabs a { text-align: center; text-decoration: none; color: var(--muted); font-weight: 700; padding: 10px 6px; border-radius: 11px; font-size: .95rem; }
 .tabs a:hover { color: var(--ink); }
 .tabs a[aria-current="page"] { background: var(--bean); color: var(--bean-ink); }
@@ -112,6 +113,51 @@ details ul { margin: 0; padding-left: 20px; display: flex; flex-direction: colum
 footer { font-size: .82rem; color: var(--muted); text-align: center; }
 @media (prefers-reduced-motion: reduce) { .meter i { transition: none; } }
 @media (max-width: 420px) { .top h1 { font-size: 1.7rem; } .big { font-size: 2.2rem; } }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-weight: 700; font-size: .9rem; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; }
+.chip:hover { border-color: var(--leaf); }
+.chip.on { background: var(--leaf-soft); border-color: var(--leaf); }
+.chip b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--surface); font-size: .75rem; margin-right: 7px; }
+.anat { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 680px) { .anat { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); align-items: start; } }
+.anatcol { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.anatsvg svg { width: 100%; height: auto; max-width: 340px; display: block; margin: 0 auto; }
+.pg { cursor: pointer; outline: none; }
+.v.fill { stroke: var(--bean); stroke-width: 2.2; stroke-linejoin: round; }
+.v.teal { stroke: var(--leaf); }
+.f1 { fill: var(--a1); } .f2 { fill: var(--a2); } .f3 { fill: var(--a3); }
+.tube { fill: none; stroke: var(--c); stroke-width: var(--w, 8); stroke-linecap: round; stroke-linejoin: round; }
+.hit { fill: none; stroke: transparent; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round; pointer-events: stroke; }
+.pg:hover .v, .pg:focus-visible .v, .pg.sel .v { stroke: var(--ink); }
+.pg.sel .v.fill { stroke-width: 3.6; }
+.surf { fill: var(--surface); }
+.zc { fill: var(--a1); fill-opacity: .4; }
+.zm { fill: var(--a2); fill-opacity: .2; }
+.deco { pointer-events: none; }
+.bd circle { fill: var(--ink); }
+.bd text { fill: var(--surface); font: 700 10px var(--font-body); text-anchor: middle; dominant-baseline: central; }
+.quiz .bd { display: none; }
+.zt { fill: var(--muted); font: 700 9.5px var(--font-body); letter-spacing: .08em; }
+.info, .rescard { border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.info { background: var(--bg); }
+.rescard { background: var(--leaf-soft); }
+.info h3, .rescard h3 { font-size: 1.25rem; }
+.info h4, .rescard h4 { margin: 0 0 2px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--leaf); }
+.info p, .rescard p { font-size: .95rem; }
+.rescard ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; font-size: .95rem; }
+.qtext { font-weight: 700; font-size: 1.08rem; }
+.trail { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.stepbtn { font: inherit; font-size: .9rem; text-align: left; display: flex; gap: 10px; align-items: flex-start; width: 100%; background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 10px; color: var(--ink); cursor: pointer; }
+.stepbtn:hover { border-color: var(--leaf); }
+.stepbtn .n { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--leaf-soft); display: grid; place-items: center; font-weight: 700; font-size: .78rem; }
+.tn { display: flex; flex-direction: column; gap: 8px; }
+.tq { font-weight: 700; font-size: .92rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+.tq.on { border-color: var(--bean); background: var(--bean-soft); }
+.tkids { margin-left: 10px; padding-left: 12px; border-left: 2px solid var(--line); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.tb { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.tlabel { font-size: .82rem; color: var(--leaf); font-weight: 700; }
+.tres { font-weight: 700; font-size: .9rem; background: var(--leaf-soft); border-radius: 10px; padding: 7px 10px; border: 1.5px solid transparent; }
+.tres.on { border-color: var(--bean); }
 </style>
 </head>
 <body>
@@ -126,14 +172,49 @@ footer { font-size: .82rem; color: var(--muted); text-align: center; }
   </header>
 
   <nav class="tabs" aria-label="Menu utama">
-    <a id="tab-kalkulator" href="#kalkulator">Kalkulator</a>
-    <a id="tab-kasus" href="#kasus">Kasus klinis</a>
+    <a id="tab-anatomi" href="#anatomi">Anatomi</a>
+    <a id="tab-alur" href="#alur">Alur diagnosis</a>
     <a id="tab-ringkasan" href="#ringkasan">Ringkasan</a>
+    <a id="tab-kasus" href="#kasus">Kasus klinis</a>
+    <a id="tab-kalkulator" href="#kalkulator">Kalkulator</a>
   </nav>
 
   <main>
+    <!-- ANATOMI -->
+    <section id="v-anatomi" class="stack">
+      <div class="card">
+        <span class="badge">Belajar</span>
+        <h2>Anatomi interaktif</h2>
+        <p class="sub">Pilih tingkat pembesaran, lalu klik bagian pada gambar atau pada daftar bernomor. Gambar berupa ilustrasi skematis dan tidak sesuai skala.</p>
+        <div class="chips" id="lvPick" role="group" aria-label="Tingkat pembesaran"></div>
+        <div class="anat">
+          <div class="anatcol">
+            <div class="anatsvg" id="anatSvg"></div>
+            <div class="chips" id="legend"></div>
+          </div>
+          <div class="info" id="anatInfo" aria-live="polite"></div>
+        </div>
+        <div class="row"><button class="btn ghost" id="quizBtn" aria-pressed="false">Mulai mode kuis</button></div>
+      </div>
+    </section>
+
+    <!-- ALUR DIAGNOSIS -->
+    <section id="v-alur" class="stack" hidden>
+      <div class="card">
+        <span class="badge">Belajar</span>
+        <h2>Alur diagnosis</h2>
+        <p class="sub">Pilih keluhan, lalu jawab pertanyaan satu per satu sampai muncul kemungkinan diagnosis dan pemeriksaan lanjutan. Alur ini disederhanakan untuk belajar.</p>
+        <div class="chips" id="flowPick" role="group" aria-label="Pilih alur"></div>
+      </div>
+      <div class="card" id="flowBody"></div>
+      <details id="flowTree">
+        <summary><h3>Lihat seluruh bagan alur</h3><span class="sub">Semua cabang dalam satu tampilan. Jalur yang kamu pilih ditandai.</span></summary>
+        <div class="body" id="treeBox"></div>
+      </details>
+    </section>
+
     <!-- KALKULATOR -->
-    <section id="v-kalkulator" class="stack">
+    <section id="v-kalkulator" class="stack" hidden>
       <div class="card">
         <span class="badge">Fungsi ginjal</span>
         <h2>Kalkulator eGFR</h2>
@@ -220,10 +301,10 @@ function bean(mood, size) {
 $('#logo').innerHTML = bean('happy', 64);
 
 /* ---------- Navigasi ---------- */
-const VIEWS = ['kalkulator', 'kasus', 'ringkasan'];
+const VIEWS = ['anatomi', 'alur', 'ringkasan', 'kasus', 'kalkulator'];
 function route() {
   let h = location.hash.replace('#', '');
-  if (VIEWS.indexOf(h) < 0) h = 'kalkulator';
+  if (VIEWS.indexOf(h) < 0) h = 'anatomi';
   VIEWS.forEach(function (v) {
     $('#v-' + v).hidden = v !== h;
     const a = $('#tab-' + v);
@@ -701,6 +782,389 @@ function renderDis(filter) {
 }
 $('#qtext').addEventListener('input', function (e) { renderDis(e.target.value); });
 renderDis('');
+
+/* ---------- Anatomi interaktif ---------- */
+const INFO = {
+  ginjal: {
+    nama: 'Ginjal',
+    fungsi: 'Menyaring darah dan membentuk urin, mengatur cairan, elektrolit, dan keseimbangan asam-basa, serta menghasilkan renin (tekanan darah), eritropoietin, dan bentuk aktif vitamin D.',
+    struktur: 'Organ berbentuk kacang di ruang retroperitoneal, setinggi T12 sampai L3. Ginjal kanan sedikit lebih rendah karena terdesak hati. Tiap ginjal berisi sekitar 1 juta nefron.',
+    klinis: 'Penyakit ginjal kronik, cedera ginjal akut, pielonefritis, batu ginjal, dan karsinoma sel ginjal.'
+  },
+  ureter: {
+    nama: 'Ureter',
+    fungsi: 'Mengalirkan urin dari pelvis renalis ke kandung kemih dengan gerakan peristaltik.',
+    struktur: 'Panjang sekitar 25-30 cm. Dindingnya terdiri atas epitel transisional (urotelium), lamina propria, lapisan otot polos, dan adventisia. Ada tiga penyempitan fisiologis: sambungan ureteropelvik, persilangan dengan pembuluh iliaka, dan sambungan ureterovesika.',
+    klinis: 'Batu cenderung tersangkut di ketiga penyempitan itu dan menyebabkan kolik ureter serta hidronefrosis. Refluks vesikoureter memudahkan infeksi naik ke ginjal.'
+  },
+  kandung: {
+    nama: 'Kandung kemih',
+    fungsi: 'Menampung urin (kapasitas sekitar 400-600 mL) dan mengosongkannya saat berkemih.',
+    struktur: 'Dinding berupa epitel transisional yang dapat meregang, dan otot detrusor yang tersusun dari tiga lapis otot polos. Kontraksi detrusor diatur saraf parasimpatis (S2-S4), penyimpanan oleh simpatis, dan sfingter eksterna oleh saraf pudendus (somatik).',
+    klinis: 'Sistitis, karsinoma urotelial kandung kemih, kandung kemih neurogenik, dan retensi urin.'
+  },
+  prostat: {
+    nama: 'Prostat',
+    fungsi: 'Menghasilkan cairan basa yang menjadi sekitar sepertiga volume semen (mengandung PSA, sitrat, dan seng).',
+    struktur: 'Kelenjar seukuran kenari yang mengelilingi uretra prostatika tepat di bawah kandung kemih, hanya ada pada laki-laki. Zona transisi (sekitar uretra) menjadi tempat BPH, dan zona perifer (teraba pada colok dubur) tempat sebagian besar kanker prostat.',
+    klinis: 'BPH, prostatitis, dan kanker prostat. Gambar pada tingkat ini memperlihatkan sistem laki-laki.'
+  },
+  uretra: {
+    nama: 'Uretra',
+    fungsi: 'Saluran pembuangan urin dari kandung kemih ke luar tubuh. Pada laki-laki juga dilalui semen.',
+    struktur: 'Pada laki-laki sekitar 18-20 cm (bagian prostatika, membranosa, dan spongiosa), pada perempuan sekitar 4 cm. Epitel berubah dari transisional di bagian proksimal menjadi berlapis gepeng dekat muara.',
+    klinis: 'Uretritis, striktur uretra, dan ISK yang lebih sering pada perempuan karena uretranya pendek.'
+  },
+  korteks: {
+    nama: 'Korteks',
+    fungsi: 'Tempat filtrasi darah di glomerulus dan sebagian besar reabsorpsi di tubulus proksimal dan distal.',
+    struktur: 'Lapisan luar ginjal di bawah kapsul. Berisi korpuskulus renalis (glomerulus dan kapsul Bowman) serta tubulus kontortus, dan menjulur di antara piramida sebagai kolumna renalis (Bertin). Pada sediaan mikroskopis tampak berbintik karena banyak korpuskulus.',
+    klinis: 'Glomerulonefritis dan sindrom nefrotik merusak glomerulus di korteks. Pada PGK lanjut, korteks menipis dan ginjal tampak mengecil pada USG.'
+  },
+  medula: {
+    nama: 'Medula (piramida renalis)',
+    fungsi: 'Memekatkan urin dengan gradien osmotik di interstisium medula (mekanisme countercurrent) dan mengalirkan urin ke kaliks.',
+    struktur: 'Tersusun atas 8-18 piramida renalis berbentuk kerucut. Berisi ansa Henle, duktus koligens, dan vasa recta yang lurus sehingga tampak bergaris. Puncak piramida disebut papila renalis.',
+    klinis: 'Nekrosis papiler (pada diabetes, penyalahgunaan analgesik, atau anemia sel sabit) dan nefrokalsinosis.'
+  },
+  kaliksminor: {
+    nama: 'Kaliks minor',
+    fungsi: 'Menampung urin yang keluar dari papila renalis.',
+    struktur: 'Cangkir kecil yang membungkus puncak tiap piramida, jumlahnya sekitar 8-18. Dilapisi epitel transisional.',
+    klinis: 'Batu kaliks dapat tanpa gejala sampai menyumbat dan menyebabkan nyeri pinggang.'
+  },
+  kaliksmayor: {
+    nama: 'Kaliks mayor',
+    fungsi: 'Mengumpulkan urin dari beberapa kaliks minor lalu menyalurkannya ke pelvis renalis.',
+    struktur: 'Biasanya ada 2-3 kaliks mayor (superior, media, inferior). Dilapisi epitel transisional dan otot polos yang berkontraksi peristaltik.',
+    klinis: 'Batu cetak (staghorn) dapat mengisi kaliks mayor dan pelvis, biasanya akibat infeksi bakteri penghasil urease (batu struvit).'
+  },
+  pelvis: {
+    nama: 'Pelvis renalis',
+    fungsi: 'Corong penampung urin sebelum masuk ke ureter.',
+    struktur: 'Gabungan kaliks mayor, berada di sinus renalis dan berlanjut menjadi ureter pada sambungan ureteropelvik (UPJ). Dilapisi epitel transisional.',
+    klinis: 'Obstruksi UPJ dan batu menyebabkan hidronefrosis. Pielonefritis melibatkan pelvis dan parenkim ginjal.'
+  },
+  glomerulus: {
+    nama: 'Glomerulus',
+    fungsi: 'Menyaring darah: air dan zat terlarut kecil melewati dinding kapiler menjadi ultrafiltrat, sedangkan sel darah dan protein besar tertahan. Laju filtrasi glomerulus (LFG) normal sekitar 90-120 mL/menit/1,73 m2.',
+    struktur: 'Jumbai kapiler dengan endotel berfenestrasi, membran basal glomerulus, dan podosit (sel viseral kapsul Bowman) yang membentuk celah filtrasi. Ketiganya membentuk sawar filtrasi. Darah masuk lewat arteriol aferen dan keluar lewat arteriol eferen.',
+    klinis: 'Kerusakan glomerulus menyebabkan sindrom nefritik (hematuria, hipertensi, oliguria) atau sindrom nefrotik (proteinuria masif). Penurunan LFG inilah yang dihitung sebagai eGFR di menu Kalkulator.'
+  },
+  bowman: {
+    nama: 'Kapsul Bowman',
+    fungsi: 'Menampung ultrafiltrat dari glomerulus di ruang Bowman, lalu mengalirkannya ke tubulus proksimal.',
+    struktur: 'Kapsul dua lapis: lapisan parietal berupa epitel gepeng selapis, dan lapisan viseral berupa podosit yang melekat pada kapiler glomerulus. Glomerulus bersama kapsul Bowman disebut korpuskulus renalis.',
+    klinis: 'Pada glomerulonefritis progresif cepat, sel epitel parietal berproliferasi membentuk bulan sabit (crescent) yang menekan glomerulus.'
+  },
+  pct: {
+    nama: 'Tubulus proksimal',
+    fungsi: 'Mereabsorpsi sekitar 65-70% natrium dan air, hampir semua glukosa dan asam amino, serta sebagian besar bikarbonat. Juga mensekresi asam organik dan banyak obat.',
+    struktur: 'Epitel kuboid dengan brush border (mikrovili) yang rapat, sitoplasma asidofilik karena banyak mitokondria, dan lumen yang tampak tidak rata.',
+    klinis: 'Tubulus proksimal paling rentan terhadap iskemia dan toksin (aminoglikosida, kontras), sehingga menjadi tempat utama nekrosis tubular akut. Glukosuria pada diabetes muncul saat kapasitas reabsorpsi glukosa terlampaui, dan SGLT2 inhibitor bekerja di sini.'
+  },
+  henle: {
+    nama: 'Ansa Henle',
+    fungsi: 'Membuat gradien osmotik di medula (mekanisme countercurrent) yang dibutuhkan untuk memekatkan urin. Segmen turun tipis permeabel terhadap air, sedangkan segmen naik tebal mereabsorpsi Na+, K+, dan Cl- (kotransporter NKCC2) tanpa air.',
+    struktur: 'Segmen tipis berepitel gepeng selapis. Segmen naik tebal berepitel kuboid dan kaya mitokondria. Gambar memperlihatkan segmen turun tipis (kiri) dan segmen naik tebal (kanan).',
+    klinis: 'Diuretik loop (furosemid) bekerja di segmen naik tebal dengan menghambat NKCC2. Mutasi pada transporter ini menyebabkan sindrom Bartter.'
+  },
+  dct: {
+    nama: 'Tubulus distal',
+    fungsi: 'Mereabsorpsi natrium (kotransporter NCC) dan kalsium (diatur hormon paratiroid). Bagian awalnya menyentuh arteriol aferen membentuk macula densa yang membantu mengatur pelepasan renin.',
+    struktur: 'Epitel kuboid yang lebih rendah daripada tubulus proksimal, tanpa brush border yang jelas, dengan lumen yang tampak lebih lebar dan rata.',
+    klinis: 'Diuretik tiazid bekerja di sini dengan menghambat NCC. Mutasi NCC menyebabkan sindrom Gitelman.'
+  },
+  cd: {
+    nama: 'Duktus koligens',
+    fungsi: 'Menerima urin dari banyak nefron dan menentukan pemekatan akhir. ADH memasukkan aquaporin-2 sehingga air direabsorpsi, dan aldosteron mengatur reabsorpsi natrium serta sekresi kalium di sel prinsipal. Sel interkalata mengatur keseimbangan asam-basa.',
+    struktur: 'Epitel kuboid sampai silindris dengan batas antarsel yang jelas dan sitoplasma tampak pucat. Mengalir ke papila lalu ke kaliks minor.',
+    klinis: 'Diabetes insipidus nefrogenik terjadi bila duktus tidak responsif terhadap ADH. Diuretik hemat kalium (spironolakton, amilorid) bekerja di sini.'
+  }
+};
+
+function badge(x, y, n) {
+  return '<g class="bd" pointer-events="none"><circle cx="' + x + '" cy="' + y + '" r="9"/><text x="' + x + '" y="' + y + '">' + n + '</text></g>';
+}
+function tube(d, color, w) {
+  return '<path class="hit" d="' + d + '"/><path class="v tube" style="--c:' + color + ';--w:' + w + '" d="' + d + '"/>';
+}
+
+const K1 = 'M95 40 C65 40 52 75 55 105 C58 140 78 165 100 160 C118 156 112 135 108 122 C104 108 104 94 108 80 C112 66 118 46 95 40 Z';
+const SVG1 =
+  '<g class="pg" data-part="uretra">' + tube('M160 290 L160 356', 'var(--leaf)', 8) + '</g>' +
+  '<g class="pg" data-part="ureter">' + tube('M108 105 C115 150 130 190 142 228', 'var(--leaf)', 6) + tube('M212 105 C205 150 190 190 178 228', 'var(--leaf)', 6) + '</g>' +
+  '<g class="pg" data-part="ginjal"><path class="v fill f1" d="' + K1 + '"/><path class="v fill f1" transform="translate(320 0) scale(-1 1)" d="' + K1 + '"/></g>' +
+  '<g class="pg" data-part="kandung"><path class="v fill f1" d="M130 226 C126 252 130 290 160 292 C190 290 194 252 190 226 C178 220 142 220 130 226 Z"/></g>' +
+  '<g class="pg" data-part="prostat"><ellipse class="v fill f2" cx="160" cy="304" rx="25" ry="14"/></g>';
+
+function buildSvg2() {
+  const cx = 165, cy = 180, mrx = 95, mry = 125, C = [215, 180];
+  const rad = function (d) { return d * Math.PI / 180; };
+  const f = function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); };
+  const ends = { 300: [232, 150], 260: [232, 150], 220: [232, 150], 180: [200, 180], 140: [232, 210], 100: [232, 210], 60: [232, 210] };
+  let pyr = '', conn = '', mins = '';
+  [60, 100, 140, 180, 220, 260, 300].forEach(function (a) {
+    const p1 = [cx + mrx * Math.cos(rad(a - 18)), cy + mry * Math.sin(rad(a - 18))];
+    const p2 = [cx + mrx * Math.cos(rad(a + 18)), cy + mry * Math.sin(rad(a + 18))];
+    const ap = [C[0] + 38 * Math.cos(rad(a)), C[1] + 38 * Math.sin(rad(a))];
+    pyr += '<path class="v fill f2" d="M' + f(p1) + ' L' + f(p2) + ' L' + f(ap) + ' Z"/>';
+    conn += '<path class="v tube" style="--c:var(--leaf);--w:4" d="M' + f(ap) + ' L' + ends[a][0] + ' ' + ends[a][1] + '"/>';
+    mins += '<circle class="v fill f3 teal" cx="' + ap[0].toFixed(1) + '" cy="' + ap[1].toFixed(1) + '" r="7.5"/>';
+  });
+  return '<g class="pg" data-part="korteks"><ellipse class="v fill f1" cx="165" cy="180" rx="120" ry="150"/></g>' +
+    '<ellipse class="surf" cx="240" cy="180" rx="70" ry="72"/>' +
+    '<g class="pg" data-part="medula">' + pyr + '</g>' +
+    '<g class="pg" data-part="kaliksminor">' + conn + '</g>' +
+    '<g class="pg" data-part="kaliksmayor">' + tube('M262 180 L232 150', 'var(--leaf)', 10) + tube('M262 180 L200 180', 'var(--leaf)', 10) + tube('M262 180 L232 210', 'var(--leaf)', 10) + '</g>' +
+    '<g class="pg" data-part="pelvis"><ellipse class="v fill f3 teal" cx="258" cy="180" rx="20" ry="17"/></g>' +
+    '<g class="pg" data-part="kaliksminor">' + mins + '</g>' +
+    '<g class="pg" data-part="ureter">' + tube('M268 192 C290 215 292 270 276 335', 'var(--leaf)', 9) + '</g>';
+}
+
+const SVG3 =
+  '<rect class="deco zc" x="0" y="0" width="320" height="172"/><rect class="deco zm" x="0" y="172" width="320" height="212"/>' +
+  '<line class="deco" x1="0" y1="172" x2="320" y2="172" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 5"/>' +
+  '<text class="deco zt" x="10" y="16">KORTEKS</text><text class="deco zt" x="10" y="188">MEDULA</text>' +
+  '<text class="deco zt" x="20" y="38" style="font-size:8.5px;letter-spacing:0">aferen</text><text class="deco zt" x="94" y="38" style="font-size:8.5px;letter-spacing:0">eferen</text>' +
+  '<path class="deco tube" style="--c:var(--bean);--w:4" d="M44 44 L58 54"/><path class="deco tube" style="--c:var(--bean);--w:4" d="M98 44 L84 54"/>' +
+  '<g class="pg" data-part="cd">' + tube('M250 40 L250 356', 'var(--good)', 12) + '<path class="deco tube" style="--c:var(--good);--w:3" d="M243 362 L250 370 L257 362"/></g>' +
+  '<text class="deco zt" x="250" y="381" text-anchor="middle" style="font-size:8.5px;letter-spacing:0">ke papila</text>' +
+  '<g class="pg" data-part="dct">' + tube('M140 170 L140 128 C140 112 166 114 166 100 C166 86 192 88 192 100 C192 112 216 112 216 98 C216 90 232 88 250 92', 'var(--warn)', 8) + '</g>' +
+  '<g class="pg" data-part="henle">' + tube('M100 205 L100 322 C100 346 140 346 140 322 L140 170', 'var(--leaf)', 5) + '<path class="v tube" style="--c:var(--leaf);--w:9" d="M140 262 L140 172"/></g>' +
+  '<g class="pg" data-part="pct">' + tube('M70 103 C70 118 50 120 50 134 C50 148 86 146 86 134 C86 122 108 124 108 138 C108 150 100 156 100 168 L100 205', 'var(--bean)', 9) + '</g>' +
+  '<g class="pg" data-part="bowman"><circle class="v fill f3 teal" cx="70" cy="75" r="28"/></g>' +
+  '<g class="pg" data-part="glomerulus"><circle class="v fill f2" cx="70" cy="75" r="17"/><path class="deco" fill="none" stroke="var(--bean)" stroke-width="2" stroke-linecap="round" d="M61 70 C69 61 83 66 80 77 C77 87 63 88 61 80"/></g>';
+
+const LEVELS = [
+  { nama: 'Sistem urinarius', vb: '0 0 320 370', svg: SVG1, parts: [['ginjal', 80, 100], ['ureter', 123, 169], ['kandung', 160, 256], ['prostat', 160, 304], ['uretra', 160, 340]] },
+  { nama: 'Potongan ginjal', vb: '0 0 320 360', svg: buildSvg2(), parts: [['korteks', 165, 42], ['medula', 115, 180], ['kaliksminor', 186, 204], ['kaliksmayor', 247, 195], ['pelvis', 262, 180], ['ureter', 286, 248]] },
+  { nama: 'Nefron', vb: '0 0 320 392', svg: SVG3, parts: [['glomerulus', 70, 80], ['bowman', 70, 52], ['pct', 50, 134], ['henle', 100, 265], ['dct', 166, 100], ['cd', 250, 230]] }
+];
+
+let lv = 0, sel = null;
+const quiz = { on: false, target: null, ok: 0, n: 0, msg: null };
+
+function nextTarget() {
+  const ids = LEVELS[lv].parts.map(function (p) { return p[0]; });
+  let t;
+  do { t = ids[Math.floor(Math.random() * ids.length)]; } while (ids.length > 1 && t === quiz.target);
+  quiz.target = t;
+}
+function infoHtml(id) {
+  const d = INFO[id];
+  return '<h3>' + d.nama + '</h3><div><h4>Fungsi</h4><p>' + d.fungsi + '</p></div><div><h4>Struktur dan histologi</h4><p>' + d.struktur + '</p></div><div><h4>Kaitan klinis</h4><p>' + d.klinis + '</p></div>';
+}
+function panel() {
+  const box = $('#anatInfo');
+  if (quiz.on) {
+    let h = '<div class="prog"><span>Mode kuis</span><span>Benar ' + quiz.ok + ' dari ' + quiz.n + ' klik</span></div>';
+    if (quiz.msg) h += '<div class="fb">' + bean(quiz.msg.ok ? 'cheer' : 'oops', 48) + '<p>' + quiz.msg.text + '</p></div>';
+    h += '<p class="qtext">Klik: ' + INFO[quiz.target].nama + '</p><div class="row"><button class="btn ghost" data-skip="1">Lewati</button><button class="btn ghost" data-exit="1">Keluar dari kuis</button></div>';
+    box.innerHTML = h;
+  } else if (sel) {
+    box.innerHTML = infoHtml(sel);
+  } else {
+    box.innerHTML = '<div style="display:flex;gap:12px;align-items:center">' + bean('happy', 64) + '<p>Klik salah satu bagian pada gambar untuk melihat fungsi, struktur, dan kaitan kliniknya.</p></div>';
+  }
+}
+function mark() {
+  document.querySelectorAll('#anatSvg .pg').forEach(function (g) { g.classList.toggle('sel', !quiz.on && g.getAttribute('data-part') === sel); });
+  document.querySelectorAll('#legend .chip').forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-part') === sel); });
+}
+function buildAnat() {
+  const L = LEVELS[lv];
+  let badges = '';
+  L.parts.forEach(function (p, i) { badges += badge(p[1], p[2], i + 1); });
+  $('#anatSvg').innerHTML = '<svg viewBox="' + L.vb + '" role="group" aria-label="' + L.nama + '" class="' + (quiz.on ? 'quiz' : '') + '">' + L.svg + badges + '</svg>';
+  const seen = {};
+  document.querySelectorAll('#anatSvg .pg').forEach(function (g) {
+    const id = g.getAttribute('data-part');
+    if (seen[id]) { g.setAttribute('aria-hidden', 'true'); return; }
+    seen[id] = true;
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', quiz.on ? 'Bagian gambar' : INFO[id].nama);
+  });
+  $('#legend').innerHTML = quiz.on ? '' : L.parts.map(function (p, i) {
+    return '<button class="chip" data-part="' + p[0] + '"><b>' + (i + 1) + '</b>' + INFO[p[0]].nama + '</button>';
+  }).join('');
+  $('#lvPick').innerHTML = LEVELS.map(function (l, i) {
+    return '<button class="chip' + (i === lv ? ' on' : '') + '" data-lv="' + i + '" aria-pressed="' + (i === lv) + '"><b>' + (i + 1) + '</b>' + l.nama + '</button>';
+  }).join('');
+  $('#quizBtn').textContent = quiz.on ? 'Keluar dari mode kuis' : 'Mulai mode kuis';
+  $('#quizBtn').setAttribute('aria-pressed', quiz.on ? 'true' : 'false');
+  panel();
+  mark();
+}
+function choose(id) {
+  if (!INFO[id]) return;
+  if (!quiz.on) { sel = id; panel(); mark(); return; }
+  quiz.n++;
+  if (id === quiz.target) {
+    quiz.ok++;
+    quiz.msg = { ok: true, text: 'Benar! ' + INFO[id].nama + ': ' + INFO[id].fungsi };
+    nextTarget();
+  } else {
+    quiz.msg = { ok: false, text: 'Itu ' + INFO[id].nama + ', bukan ' + INFO[quiz.target].nama + '. Coba lagi.' };
+  }
+  panel();
+}
+function toggleQuiz() {
+  quiz.on = !quiz.on;
+  quiz.ok = 0; quiz.n = 0; quiz.msg = null; sel = null;
+  if (quiz.on) nextTarget();
+  buildAnat();
+}
+$('#v-anatomi').addEventListener('click', function (e) {
+  const lb = e.target.closest('[data-lv]');
+  if (lb) { lv = parseInt(lb.getAttribute('data-lv'), 10); sel = null; quiz.msg = null; if (quiz.on) nextTarget(); buildAnat(); return; }
+  if (e.target.closest('#quizBtn') || e.target.closest('[data-exit]')) { toggleQuiz(); return; }
+  if (e.target.closest('[data-skip]')) { quiz.msg = null; nextTarget(); panel(); return; }
+  const pg = e.target.closest('[data-part]');
+  if (pg) choose(pg.getAttribute('data-part'));
+});
+$('#anatSvg').addEventListener('keydown', function (e) {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('pg')) {
+    e.preventDefault();
+    choose(e.target.getAttribute('data-part'));
+  }
+});
+buildAnat();
+
+/* ---------- Alur diagnosis ---------- */
+const FLOWS = [
+  {
+    nama: 'Hematuria', mulai: 'h1', nodes: {
+      h1: { q: 'Dipstick urin menunjukkan darah. Apakah sedimen urin di bawah mikroskop memang menemukan eritrosit (3 atau lebih per lapang pandang besar)?', o: [['Tidak ada eritrosit, hanya dipstick yang positif', 'r_pseudo'], ['Ada eritrosit (hematuria sejati)', 'h2']] },
+      r_pseudo: { r: { j: 'Bukan hematuria sejati', s: 'Dipstick positif tanpa eritrosit berarti hemoglobinuria atau mioglobinuria, atau urin berwarna karena zat lain.', p: ['Kreatin kinase (CK) untuk rabdomiolisis', 'LDH, haptoglobin, dan hitung retikulosit untuk hemolisis', 'Riwayat obat dan makanan (misalnya rifampisin, bit)'], t: ['Atasi penyebabnya', 'Pada rabdomiolisis, berikan hidrasi agresif untuk melindungi ginjal'], c: '' } },
+      h2: { q: 'Apakah ada tanda asal glomerulus: eritrosit dismorfik atau akantosit, silinder eritrosit, atau proteinuria bermakna (dipstick +2 atau lebih)?', note: 'Urin berwarna cola atau teh juga menunjuk ke asal glomerulus.', o: [['Ya, asal glomerulus', 'h3'], ['Tidak, asal non-glomerulus (eritrosit isomorfik, tanpa proteinuria bermakna)', 'h4']] },
+      h3: { q: 'Bagaimana gambaran klinis dan laboratoriumnya?', o: [['Edema, hipertensi, dan oliguria sekitar 1-3 minggu setelah infeksi streptokokus, C3 turun', 'r_gnaps'], ['Hematuria makroskopik 1-3 hari setelah infeksi saluran napas atas, C3 normal, sering berulang', 'r_iga'], ['Fungsi ginjal menurun cepat dalam hari sampai minggu', 'r_rpgn']] },
+      r_gnaps: { r: { j: 'Glomerulonefritis akut pascastreptokokus', s: 'Sindrom nefritik akut setelah infeksi streptokokus, paling sering pada anak.', p: ['C3 (turun) dan titer ASTO (naik)', 'Urinalisis: silinder eritrosit dan proteinuria ringan', 'Tekanan darah dan kreatinin berkala'], t: ['Suportif: batasi cairan dan garam, antihipertensi, diuretik', 'Antibiotik untuk eradikasi kuman', 'Prognosis umumnya baik, C3 kembali normal dalam sekitar 6-8 minggu'], c: 'pascastreptokokus' } },
+      r_iga: { r: { j: 'Nefropati IgA', s: 'Glomerulonefritis primer tersering di dunia, ditandai deposit IgA di mesangium.', p: ['C3 normal', 'Fungsi ginjal dan rasio protein/kreatinin urin', 'Biopsi ginjal bila proteinuria menetap atau fungsi ginjal menurun'], t: ['Kontrol tekanan darah dan proteinuria dengan ACE inhibitor atau ARB', 'Rujuk nefrologi; imunosupresi dipertimbangkan pada risiko progresi tinggi'], c: 'glomerulonefritis' } },
+      r_rpgn: { r: { j: 'Glomerulonefritis progresif cepat (RPGN)', s: 'Emergensi nefrologi: kerusakan glomerulus berat dengan bulan sabit (crescent) dan penurunan fungsi ginjal dalam hari sampai minggu.', p: ['Kreatinin serial', 'ANCA, anti-GBM, ANA, anti-dsDNA, C3 dan C4', 'Biopsi ginjal segera'], t: ['Rujuk dan rawat bersama nefrologi segera', 'Imunosupresi (steroid dosis tinggi, dengan atau tanpa siklofosfamid atau rituksimab), plasmaferesis pada kasus tertentu'], c: 'glomerulonefritis' } },
+      h4: { q: 'Apakah ada nyeri atau gejala lain yang menyertai?', o: [['Kolik pinggang yang menjalar ke lipat paha atau genital', 'r_batu'], ['Disuria, sering berkemih, leukosit atau nitrit positif, mungkin demam', 'r_isk'], ['Riwayat trauma pinggang atau abdomen', 'r_trauma'], ['Tanpa nyeri (hematuria tanpa rasa sakit)', 'h5']] },
+      r_batu: { r: { j: 'Urolitiasis (batu saluran kemih)', s: 'Batu ginjal atau ureter yang menyebabkan kolik dan hematuria.', p: ['CT abdomen tanpa kontras (baku emas), atau USG bila ingin menghindari radiasi', 'Urinalisis dan kultur urin', 'Kreatinin untuk menilai fungsi ginjal'], t: ['Analgesik (NSAID) dan hidrasi', 'Terapi ekspulsif medik untuk batu ureter distal yang kecil', 'Drainase segera bila ada demam disertai obstruksi'], c: 'urolitiasis' } },
+      r_isk: { r: { j: 'Infeksi saluran kemih', s: 'Sistitis atau pielonefritis. Hematuria yang menyertai ISK umumnya hilang setelah infeksi sembuh.', p: ['Urinalisis dan kultur urin', 'Ulangi urinalisis setelah terapi untuk memastikan hematuria hilang'], t: ['Antibiotik sesuai pedoman lokal dan hasil kultur'], c: 'infeksi saluran kemih' } },
+      r_trauma: { r: { j: 'Cedera ginjal atau saluran kemih akibat trauma', s: 'Hematuria setelah trauma tumpul atau tembus dinilai berdasarkan stabilitas hemodinamik.', p: ['Stabilisasi dan tanda vital terlebih dahulu', 'CT abdomen dengan kontras (fase tunda) pada pasien stabil', 'Uretrografi retrograd bila ada darah di meatus, sebelum kateterisasi'], t: ['Sebagian besar cedera ginjal ditangani konservatif', 'Eksplorasi atau embolisasi pada pasien yang tidak stabil'], c: '' } },
+      h5: { q: 'Hematuria tanpa nyeri. Apakah ada faktor risiko keganasan: usia di atas 40 tahun, perokok, paparan zat kimia industri, riwayat radiasi panggul, atau hematuria makroskopik?', note: 'Memakai antikoagulan tidak menghilangkan kebutuhan evaluasi.', o: [['Ada faktor risiko atau hematuria makroskopik', 'r_ca'], ['Tidak ada faktor risiko, hematuria mikroskopik saja', 'r_low']] },
+      r_ca: { r: { j: 'Curiga keganasan saluran kemih', s: 'Hematuria tanpa nyeri pada perokok atau usia lanjut dianggap keganasan sampai terbukti sebaliknya: karsinoma urotelial kandung kemih, karsinoma sel ginjal, atau tumor saluran atas.', p: ['Sistoskopi', 'CT urografi untuk saluran kemih atas', 'Sitologi urin bila perlu'], t: ['Rujuk urologi', 'Terapi sesuai hasil: reseksi transuretra (TURBT) untuk tumor kandung kemih, nefrektomi untuk tumor ginjal'], c: '' } },
+      r_low: { r: { j: 'Hematuria mikroskopik risiko rendah', s: 'Penyebab jinak sering ditemukan: olahraga berat, menstruasi, infeksi, atau BPH.', p: ['Ulangi urinalisis setelah menyingkirkan penyebab sementara', 'Tekanan darah dan kreatinin'], t: ['Pantau dan ulangi urinalisis', 'Evaluasi lebih lanjut bila hematuria menetap atau muncul gejala'], c: '' } }
+    }
+  },
+  {
+    nama: 'Nyeri skrotum akut', mulai: 's1', nodes: {
+      s1: { q: 'Bagaimana onset keluhannya?', o: [['Mendadak, dalam hitungan jam, sangat berat', 's2'], ['Bertahap dalam 1-3 hari', 's3'], ['Tidak nyeri hebat, ada benjolan padat yang teraba di testis', 'r_massa']] },
+      s2: { q: 'Pada pemeriksaan fisik, apakah testis tampak tinggi dan melintang, refleks kremaster hilang, atau nyeri tidak berkurang saat testis diangkat (Prehn negatif)?', note: 'Bila kecurigaan klinis tinggi, jangan menunda tindakan untuk menunggu pencitraan.', o: [['Ya, tanda-tanda itu ada', 'r_torsio'], ['Tidak khas: nyeri terlokalisasi di kutub atas, refleks kremaster ada, tampak titik biru (blue dot sign)', 'r_apen']] },
+      r_torsio: { r: { j: 'Torsio testis', s: 'Emergensi bedah. Peluang testis selamat paling tinggi dalam 6 jam pertama.', p: ['Diagnosis klinis', 'USG Doppler hanya bila tidak menunda tindakan'], t: ['Eksplorasi bedah segera: detorsi dan orkidopeksi di kedua sisi', 'Detorsi manual hanya sebagai tindakan sementara'], c: 'torsio' } },
+      r_apen: { r: { j: 'Torsio appendiks testis', s: 'Penyebab nyeri skrotum akut yang jinak pada anak. Tanda khasnya titik biru di kutub atas testis.', p: ['USG Doppler bila ragu, untuk menyingkirkan torsio testis'], t: ['Analgesik dan istirahat, biasanya membaik dalam 1-2 minggu', 'Eksplorasi bila torsio testis tidak dapat disingkirkan'], c: '' } },
+      s3: { q: 'Apakah nyeri berkurang saat testis diangkat (Prehn positif), refleks kremaster ada, dan ada demam, disuria, atau duh uretra?', o: [['Ya, gambaran infeksi dengan refleks kremaster ada', 'r_epi'], ['Tidak, nyeri menetap atau testis keras dan membesar', 'r_usg']] },
+      r_epi: { r: { j: 'Epididimitis atau epididimoorkitis akut', s: 'Radang epididimis. Pada pria muda aktif seksual penyebab tersering adalah Chlamydia dan gonore, pada pria lebih tua E. coli.', p: ['Urinalisis dan kultur urin', 'Swab uretra atau NAAT untuk Chlamydia dan gonore', 'USG Doppler bila diagnosis tidak jelas'], t: ['Antibiotik sesuai penyebab dan usia', 'Istirahat, penyangga skrotum, dan analgesik; obati pasangan bila penyebabnya IMS'], c: '' } },
+      r_usg: { r: { j: 'Perlu USG Doppler skrotum', s: 'Secara klinis belum bisa dibedakan antara torsio, epididimoorkitis, abses, hernia, atau tumor.', p: ['USG Doppler skrotum (aliran darah testis, massa, abses)'], t: ['Rujuk urologi', 'Bila aliran darah testis berkurang, tangani sebagai torsio'], c: '' } },
+      r_massa: { r: { j: 'Curiga tumor testis', s: 'Benjolan padat tidak nyeri pada testis pria muda dianggap tumor sel germinal sampai terbukti sebaliknya.', p: ['USG skrotum', 'AFP, beta-hCG, dan LDH', 'CT toraks dan abdomen untuk staging setelah diagnosis'], t: ['Orkiektomi radikal lewat sayatan inguinal', 'Hindari biopsi atau sayatan skrotal'], c: '' } }
+    }
+  },
+  {
+    nama: 'Cedera ginjal akut', mulai: 'a1', nodes: {
+      a1: { q: 'Apakah memenuhi kriteria AKI: kreatinin naik 0,3 mg/dL atau lebih dalam 48 jam, atau 1,5 kali nilai dasar dalam 7 hari, atau urin kurang dari 0,5 mL/kgBB/jam selama 6 jam atau lebih?', o: [['Ya, memenuhi kriteria AKI', 'a2'], ['Tidak, kreatinin tinggi dan stabil lebih dari 3 bulan', 'r_pgk']] },
+      r_pgk: { r: { j: 'Kemungkinan penyakit ginjal kronik', s: 'Penurunan fungsi yang menetap lebih dari 3 bulan, bukan AKI.', p: ['Hitung eGFR (pakai menu Kalkulator) dan rasio albumin/kreatinin urin', 'USG ginjal: ukuran mengecil dan korteks menipis'], t: ['Kendalikan diabetes dan hipertensi', 'ACE inhibitor atau ARB bila ada albuminuria', 'Hindari nefrotoksin'], c: 'kronik' } },
+      a2: { q: 'Lakukan USG ginjal dan kandung kemih. Apakah ada hidronefrosis atau kandung kemih penuh (retensi urin)?', o: [['Ya, ada hidronefrosis atau retensi', 'r_post'], ['Tidak ada', 'a3']] },
+      r_post: { r: { j: 'AKI pascarenal (obstruksi)', s: 'Sumbatan aliran urin, misalnya akibat BPH, batu, tumor panggul, atau kateter tersumbat.', p: ['USG: hidronefrosis', 'Cari penyebab: colok dubur, CT bila perlu'], t: ['Hilangkan obstruksi: kateter uretra atau suprapubik, DJ stent, atau nefrostomi', 'Pantau diuresis pascaobstruksi dan elektrolit'], c: 'cedera ginjal akut' } },
+      a3: { q: 'Pilih gambaran yang paling sesuai:', o: [['Kehilangan cairan atau hipoperfusi (diare, perdarahan, gagal jantung, sepsis), rasio BUN:kreatinin di atas 20, FENa kurang dari 1%', 'r_pre'], ['Hipotensi berkepanjangan atau paparan nefrotoksin (aminoglikosida, kontras), silinder granular coklat berlumpur, FENa lebih dari 2%', 'r_nta'], ['Sedimen aktif: eritrosit dismorfik, silinder eritrosit, proteinuria', 'r_gnaki'], ['Demam, ruam, atau eosinofilia setelah obat baru (antibiotik, NSAID, PPI), sel darah putih pada sedimen', 'r_ain']] },
+      r_pre: { r: { j: 'AKI prerenal', s: 'Perfusi ginjal turun, struktur ginjal masih utuh dan membaik bila perfusi dipulihkan.', p: ['Rasio BUN:kreatinin, FENa, dan osmolalitas urin', 'Status volume dan tanda vital'], t: ['Pulihkan volume dan perfusi: rehidrasi atau atasi penyebab', 'Hentikan sementara obat yang menurunkan perfusi (NSAID, ACE inhibitor, diuretik)', 'Bila terlambat dapat berlanjut menjadi nekrosis tubular akut'], c: 'cedera ginjal akut' } },
+      r_nta: { r: { j: 'Nekrosis tubular akut (AKI intrarenal)', s: 'Cedera sel tubulus akibat iskemia atau toksin. Pemulihan memerlukan hari sampai minggu.', p: ['Sedimen urin: silinder granular coklat berlumpur', 'FENa lebih dari 2%'], t: ['Hentikan nefrotoksin, optimalkan volume dan tekanan darah', 'Terapi suportif, dialisis bila ada indikasi'], c: 'cedera ginjal akut' } },
+      r_gnaki: { r: { j: 'AKI intrarenal glomerular', s: 'Glomerulonefritis atau vaskulitis yang menyebabkan penurunan fungsi ginjal.', p: ['C3, C4, ANA, ANCA, anti-GBM, ASTO', 'Biopsi ginjal'], t: ['Rujuk nefrologi segera', 'Imunosupresi sesuai penyebab'], c: 'glomerulonefritis' } },
+      r_ain: { r: { j: 'Nefritis interstisial akut', s: 'Reaksi hipersensitivitas pada interstisium ginjal, paling sering akibat obat.', p: ['Urinalisis: leukosit dan silinder leukosit', 'Biopsi ginjal bila tidak jelas'], t: ['Hentikan obat penyebab', 'Steroid dipertimbangkan bila tidak membaik'], c: 'cedera ginjal akut' } }
+    }
+  },
+  {
+    nama: 'Edema dan proteinuria', mulai: 'p1', nodes: {
+      p1: { q: 'Berapa besar proteinuria (rasio protein/kreatinin urin atau penampungan 24 jam)?', o: [['Masif: lebih dari 3,5 g/hari pada dewasa, atau dipstick +3 sampai +4', 'p2'], ['Kurang dari itu (ringan sampai sedang)', 'p3']] },
+      p2: { q: 'Sindrom nefrotik juga ditandai albumin rendah (di bawah 2,5 g/dL), edema, dan kolesterol tinggi. Berapa usia pasien?', o: [['Anak usia 1-10 tahun', 'r_mcd'], ['Dewasa', 'r_nefd']] },
+      r_mcd: { r: { j: 'Sindrom nefrotik kelainan minimal', s: 'Penyebab tersering pada anak, responsif terhadap steroid.', p: ['Urinalisis, rasio protein/kreatinin, albumin, dan kolesterol', 'Biopsi ginjal tidak rutin di awal, dilakukan bila resisten steroid atau gambaran tidak khas'], t: ['Prednison', 'Diet dan edukasi, diuretik bila edema berat', 'Waspadai infeksi dan tromboemboli'], c: 'nefrotik' } },
+      r_nefd: { r: { j: 'Sindrom nefrotik dewasa', s: 'Perlu dicari penyebab primer (kelainan minimal, FSGS, nefropati membranosa) atau sekunder (diabetes, lupus, amiloidosis, obat, keganasan).', p: ['Gula darah atau HbA1c, ANA, anti-dsDNA, C3 dan C4, hepatitis B dan C, HIV', 'Biopsi ginjal umumnya diperlukan pada dewasa'], t: ['Terapi sesuai hasil biopsi', 'Diuretik, ACE inhibitor atau ARB, dan statin', 'Pertimbangkan antikoagulan bila albumin sangat rendah'], c: 'nefrotik' } },
+      p3: { q: 'Apakah ada gambaran lain yang menyertai?', o: [['Hematuria, hipertensi, dan oliguria (sindrom nefritik)', 'r_nefr'], ['Diabetes atau hipertensi lama', 'r_dm'], ['Remaja, proteinuria hanya saat berdiri atau saat demam dan olahraga', 'r_orto']] },
+      r_nefr: { r: { j: 'Sindrom nefritik', s: 'Radang glomerulus dengan hematuria, hipertensi, dan penurunan fungsi ginjal.', p: ['C3, C4, ASTO, ANA, ANCA', 'Lanjutkan ke alur Hematuria asal glomerulus'], t: ['Rujuk nefrologi', 'Terapi sesuai penyebab'], c: 'glomerulonefritis' } },
+      r_dm: { r: { j: 'Nefropati diabetik atau hipertensif', s: 'Proteinuria yang muncul bertahap pada penderita diabetes atau hipertensi lama.', p: ['Rasio albumin/kreatinin urin dan eGFR berkala', 'Pemeriksaan retina (retinopati sering menyertai nefropati diabetik)'], t: ['Kontrol gula darah dan tekanan darah', 'ACE inhibitor atau ARB, dan SGLT2 inhibitor sesuai indikasi'], c: 'kronik' } },
+      r_orto: { r: { j: 'Proteinuria ortostatik atau sementara', s: 'Umumnya jinak. Protein muncul saat berdiri, atau saat demam dan olahraga.', p: ['Ulangi pemeriksaan urin pagi pertama (sesaat setelah bangun)'], t: ['Edukasi dan pemantauan', 'Evaluasi lebih lanjut bila proteinuria menetap'], c: '' } }
+    }
+  },
+  {
+    nama: 'Gangguan berkemih pria', mulai: 'l1', nodes: {
+      l1: { q: 'Pria dengan keluhan berkemih (LUTS). Apakah ada tanda bahaya?', o: [['Tidak bisa berkemih sama sekali, nyeri perut bawah', 'r_ret'], ['Demam, nyeri perineum, nyeri tekan prostat', 'r_prost'], ['Kencing berdarah yang terlihat jelas', 'r_hem'], ['Tidak ada tanda bahaya', 'l2']] },
+      r_ret: { r: { j: 'Retensi urin akut', s: 'Kandung kemih penuh dan tidak bisa dikosongkan. Penyebab tersering pada pria tua adalah BPH.', p: ['Palpasi kandung kemih, bladder scan atau USG', 'Kreatinin dan urinalisis'], t: ['Pasang kateter uretra (atau sistostomi suprapubik bila gagal)', 'Pantau diuresis pascaobstruksi', 'Mulai alfa-blocker dan rencanakan evaluasi penyebab'], c: 'BPH' } },
+      r_prost: { r: { j: 'Prostatitis bakterial akut', s: 'Infeksi prostat dengan demam dan gejala berkemih. Prostat nyeri tekan dan terasa hangat.', p: ['Urinalisis dan kultur urin', 'Hindari pijat prostat'], t: ['Antibiotik yang menembus prostat sesuai kultur', 'Rawat inap bila toksik atau ada retensi urin'], c: '' } },
+      r_hem: { r: { j: 'Hematuria makroskopik', s: 'Perlu evaluasi tersendiri karena dapat menandakan keganasan, batu, atau infeksi.', p: ['Ikuti alur Hematuria: urinalisis, sistoskopi, dan CT urografi'], t: ['Rujuk urologi'], c: '' } },
+      l2: { q: 'Hitung skor IPSS dan lakukan colok dubur. Apa temuannya?', o: [['Prostat membesar, simetris, kenyal, permukaan licin', 'l3'], ['Nodul keras dan tidak rata, atau PSA tinggi', 'r_cap']] },
+      r_cap: { r: { j: 'Curiga kanker prostat', s: 'Nodul keras pada colok dubur atau PSA meningkat memerlukan penilaian lanjutan.', p: ['Ulangi PSA', 'MRI prostat', 'Biopsi prostat'], t: ['Rujuk urologi', 'Terapi sesuai stadium dan skor Gleason'], c: 'kanker prostat' } },
+      l3: { q: 'Seberapa berat gejalanya menurut skor IPSS?', o: [['0-7 (ringan)', 'r_w'], ['8-19 (sedang)', 'r_m'], ['20-35 (berat), atau ada komplikasi (retensi berulang, batu buli, infeksi berulang, gangguan ginjal)', 'r_s']] },
+      r_w: { r: { j: 'BPH gejala ringan', s: 'Gejala belum mengganggu banyak dan tanpa komplikasi.', p: ['Urinalisis, PSA bila sesuai, dan USG dengan sisa urin'], t: ['Observasi (watchful waiting)', 'Edukasi gaya hidup: kurangi minum malam hari, batasi kafein dan alkohol', 'Kontrol berkala'], c: 'BPH' } },
+      r_m: { r: { j: 'BPH gejala sedang', s: 'Gejala cukup mengganggu dan biasanya memerlukan obat.', p: ['Volume prostat dengan USG', 'Sisa urin pascaberkemih'], t: ['Alfa-1 blocker (misalnya tamsulosin)', 'Tambah penghambat 5-alfa reduktase bila prostat besar', 'Evaluasi ulang berkala'], c: 'BPH' } },
+      r_s: { r: { j: 'BPH berat atau berkomplikasi', s: 'Gejala berat atau sudah ada komplikasi akibat obstruksi.', p: ['Kreatinin, USG saluran kemih, dan sisa urin', 'Evaluasi komplikasi: batu buli, infeksi, hidronefrosis'], t: ['Terapi obat kombinasi sambil menilai indikasi tindakan', 'Tindakan bedah seperti TURP bila gagal terapi atau ada komplikasi'], c: 'BPH' } }
+    }
+  }
+];
+
+let fl = 0, path = [], cur = FLOWS[0].mulai;
+function treeHtml(F, id, vis) {
+  const n = F.nodes[id];
+  if (n.r) return '<div class="tres' + (vis[id] ? ' on' : '') + '">' + n.r.j + '</div>';
+  let h = '<div class="tn"><div class="tq' + (vis[id] ? ' on' : '') + '">' + n.q + '</div><div class="tkids">';
+  n.o.forEach(function (o) { h += '<div class="tb"><span class="tlabel">' + o[0] + '</span>' + treeHtml(F, o[1], vis) + '</div>'; });
+  return h + '</div></div>';
+}
+function renderFlow() {
+  const F = FLOWS[fl], n = F.nodes[cur];
+  $('#flowPick').innerHTML = FLOWS.map(function (f, i) {
+    return '<button class="chip' + (i === fl ? ' on' : '') + '" data-fl="' + i + '" aria-pressed="' + (i === fl) + '">' + f.nama + '</button>';
+  }).join('');
+  let h = '<div class="prog"><span>' + F.nama + '</span><span>' + (n.r ? 'Hasil setelah ' + path.length + ' langkah' : 'Langkah ' + (path.length + 1)) + '</span></div>';
+  if (path.length) {
+    h += '<div><span class="legend">Jawabanmu sejauh ini (klik untuk kembali ke langkah itu)</span><ol class="trail">' + path.map(function (s, i) {
+      return '<li><button class="stepbtn" data-goto="' + i + '"><span class="n">' + (i + 1) + '</span><span>' + F.nodes[s.node].o[s.opt][0] + '</span></button></li>';
+    }).join('') + '</ol></div>';
+  }
+  if (n.r) {
+    const r = n.r;
+    h += '<div class="rescard"><div style="display:flex;gap:12px;align-items:center">' + bean('cheer', 64) + '<div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="badge">Kemungkinan diagnosis</span><h3>' + r.j + '</h3></div></div>' +
+      '<p>' + r.s + '</p><div><h4>Pemeriksaan lanjutan</h4><ul>' + r.p.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+      '<div><h4>Tatalaksana awal</h4><ul>' + r.t.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="row"><button class="btn" data-reset="1">Ulangi alur</button>' + (r.c ? '<button class="btn ghost" data-cari="' + r.c + '">Buka ringkasan penyakit</button>' : '') + '</div>' +
+      '<p class="note">Alur ini penyederhanaan untuk belajar. Cocokkan dengan buku ajar atau pedoman yang dipakai di kampusmu.</p></div>';
+  } else {
+    h += '<p class="qtext">' + n.q + '</p>' + (n.note ? '<p class="note">' + n.note + '</p>' : '') +
+      '<div class="opts">' + n.o.map(function (o, i) { return '<button class="opt" data-opt="' + i + '">' + o[0] + '</button>'; }).join('') + '</div>';
+  }
+  $('#flowBody').innerHTML = h;
+  const vis = {};
+  path.forEach(function (s) { vis[s.node] = true; });
+  vis[cur] = true;
+  $('#treeBox').innerHTML = treeHtml(F, F.mulai, vis);
+}
+$('#v-alur').addEventListener('click', function (e) {
+  const fb = e.target.closest('[data-fl]');
+  if (fb) { fl = parseInt(fb.getAttribute('data-fl'), 10); path = []; cur = FLOWS[fl].mulai; renderFlow(); return; }
+  const ob = e.target.closest('[data-opt]');
+  if (ob) {
+    const i = parseInt(ob.getAttribute('data-opt'), 10);
+    path.push({ node: cur, opt: i });
+    cur = FLOWS[fl].nodes[cur].o[i][1];
+    renderFlow();
+    return;
+  }
+  const gb = e.target.closest('[data-goto]');
+  if (gb) { const i = parseInt(gb.getAttribute('data-goto'), 10); cur = path[i].node; path = path.slice(0, i); renderFlow(); return; }
+  if (e.target.closest('[data-reset]')) { path = []; cur = FLOWS[fl].mulai; renderFlow(); return; }
+  const cb = e.target.closest('[data-cari]');
+  if (cb) {
+    const term = cb.getAttribute('data-cari');
+    $('#qtext').value = term;
+    renderDis(term);
+    location.hash = 'ringkasan';
+    window.scrollTo(0, 0);
+  }
+});
+renderFlow();
 </script>
 
 </body>
